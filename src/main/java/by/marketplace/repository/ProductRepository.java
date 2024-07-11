@@ -1,0 +1,14 @@
+package by.marketplace.repository;
+
+import by.marketplace.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    Product save (Product product);
+    void find ();
+    void findAllById (Long id);
+    void deleteById (Long id);
+    void createById ();
+}
