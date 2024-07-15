@@ -18,7 +18,7 @@ public class Product {
     @Column(name = "quantityProduct")
     private int quantity;
     @Column(name = "prizeProduct")
-    private int prize;
+    private double prize;
     @Column(name = "description")
     private String description;
 }

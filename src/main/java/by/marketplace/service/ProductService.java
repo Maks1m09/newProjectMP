@@ -11,11 +11,12 @@ import java.util.Optional;
 @Service
 public class ProductService {
 
+
     @Autowired
     ProductRepository productRepository;
 
      public void saveProduct (Product product){
-         if (productRepository.findById(product.getId()).isPresent()){
+         if (productRepository.findById(product.getId())!=null){
              System.out.println("You cant save new product, because we have this product in DB");
          }
        productRepository.save(product);
@@ -26,12 +27,15 @@ public class ProductService {
      }
 
 
-     public void  findProductById (Long id){
-         if (productRepository.findById(id).isPresent()){
-             productRepository.findById(id);
+     public Optional<Product> findProductById (Long id){
+         if (productRepository.findById(id)!=null){
+             Product product = productRepository.findById(id);
+             return Optional.ofNullable(product);
          }
          System.out.println("We dont have Product with this id");
+         return Optional.empty();
      }
+
 
      public void createProduct (String name){
         Product product = productRepository.findByName (name);
@@ -41,10 +45,12 @@ public class ProductService {
          System.out.println("We dont have Product with this name in DB");
      }
 
-//     public void deleteProductById (Long id){
-//         Product product = productRepository.findById(id).;
-//         productRepository.deleteById(id);
-//     }
+     public void deleteProductById (Long id){
+         if (productRepository.findById(id)!=null){
+             productRepository.deleteById(id);
+         }
+         System.out.println("We cant delete because we dont have product with this id in DB ");
+     }
 
 
 

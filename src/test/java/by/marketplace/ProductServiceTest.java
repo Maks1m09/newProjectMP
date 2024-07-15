@@ -3,11 +3,14 @@ package by.marketplace;
 import by.marketplace.entity.Product;
 import by.marketplace.repository.ProductRepository;
 import by.marketplace.service.ProductService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.mockito.Mockito.*;
 
@@ -15,33 +18,21 @@ import static org.mockito.Mockito.verify;
 
 
 
-@RunWith(MockitoJUnitRunner.class)
+
 public class ProductServiceTest {
 
+    private final ProductRepository repository = mock();
+    private final ProductService service  = new ProductService(repository);
 
-    @Mock
-    private ProductRepository
-
-
-@InjectMocks
-
-    private ProductService
-    productService;
-
-    @Test
-    public void whenSaveProduct_ShouldReturnProduct(){
-
-        Product product = mock(Product.class);;
-
-        product.setId(1L);
-        product.setName("TestProduct");
-        product.setPrize(1200);
-        product.setQuantity(20);
-        product.setDescription("New product");
-
-        doNothing().when(productService).saveProduct(product);
-        verify(productService,times(1)).saveProduct(product);
+//    @Test
+//    public void testN (){
+//        Product product = mock(Product.class);
+//        when(product.getName()).thenReturn("Pety");
+//        Assert.assertEquals("Pety", product.getName());
+//
+//    }
 
 
-    }
+
+
 }
