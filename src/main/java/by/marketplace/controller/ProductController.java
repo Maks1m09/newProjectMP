@@ -19,18 +19,18 @@ public class ProductController {
         return productService.saveProduct(product);
     }
 
-    @GetMapping("/")
+    @GetMapping("/product")
     public List<Product> getAllProduct() {
         return productService.findAllProducts();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/product/delete/{id}")
     public void deleteBook(@PathVariable(value = "id") long id) {
         productService.deleteProductById(id);
 
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/product/edit/{id}")
     public Product updateBook(@PathVariable(value = "id") long id, @RequestBody Product product) {
         if (productService.findProductById(id).isPresent()) {
             productService.updateProduct(id, product);

@@ -5,18 +5,7 @@ import by.marketplace.repository.ProductRepository;
 import by.marketplace.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import static org.mockito.Mockito.*;
-
-import static org.mockito.Mockito.verify;
-
-
 
 
 public class ProductServiceTest {
@@ -31,8 +20,19 @@ public class ProductServiceTest {
         Assert.assertEquals("Pety", product.getName());
 
     }
+    @Test
+    public void testMethodSaveProduct (){
+        Product product = mock(Product.class);
+        when(service.saveProduct(product).getName()).thenReturn("Pety");
+        Assert.assertEquals("Pety",product.getName());
+//        verify (service.saveProduct(product));
 
+    }
 
+    @Test
+    public void testMethodUpdateProduct (){
+        Product product = mock(Product.class);
 
+    }
 
 }
