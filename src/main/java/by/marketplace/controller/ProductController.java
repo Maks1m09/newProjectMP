@@ -2,54 +2,40 @@ package by.marketplace.controller;
 
 import by.marketplace.entity.Product;
 import by.marketplace.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
-@Controller
+@RequiredArgsConstructor
+@RestController
 public class ProductController {
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @GetMapping ("/product/save")
-    public String saveProductGet (Product product){
-          return "saveProduct";
-    }
 
-    @PostMapping ("/product/save")
-    public String saveProductPost (@RequestBody Product product){
-        productService.saveProduct(product);
-        return "redirect:/home";
+    @PostMapping("/product/save")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.saveProduct(product);
     }
 
     @GetMapping("/")
-  public String seeAllProduct (Model model){
-        model.addAttribute("products", productService.findAllProducts());
-        return "home";
+    public List<Product> getAllProduct() {
+        return productService.findAllProducts();
     }
 
-    @GetMapping("/delete/{id}")
-  public String deleteBookById (@PathVariable(value = "id") Long id){
-      productService.deleteProductById(id);
-      return "redirect:/home";
-  }
-    @GetMapping("/edit/{id}")
-      public String showCreateBook(@PathVariable(value = "id") Long id, Model model ){
-        Optional<Product> product = productService.findProductById(id);
-        model.addAttribute("products", product);
-        return "update-product";
-      }
-//добавить в конструктор и переадресац
-    @GetMapping("/update/{id}")
-    public String createBook(@PathVariable(value = "id") Long id, Model model ){
-        Optional<Product> product = productService.findProductById(id);
-        productService.createProduct("");
-        model.addAttribute("products", product);
-        return "/home";
-    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteBook(@PathVariable(value = "id") long id) {
+        productService.deleteProductById(id);
 
     }
+
+    @PutMapping("/edit/{id}")
+    public Product updateBook(@PathVariable(value = "id") long id, @RequestBody Product product) {
+        if (productService.findProductById(id).isPresent()) {
+            productService.updateProduct(id, product);
+            return product;
+        }
+        return product;
+    }
+}

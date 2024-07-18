@@ -24,13 +24,13 @@ public class ProductServiceTest {
     private final ProductRepository repository = mock();
     private final ProductService service  = new ProductService(repository);
 
-//    @Test
-//    public void testN (){
-//        Product product = mock(Product.class);
-//        when(product.getName()).thenReturn("Pety");
-//        Assert.assertEquals("Pety", product.getName());
-//
-//    }
+    @Test
+    public void testN (){
+        Product product = mock(Product.class);
+        when(product.getName()).thenReturn("Pety");
+        Assert.assertEquals("Pety", product.getName());
+
+    }
 
 
 
