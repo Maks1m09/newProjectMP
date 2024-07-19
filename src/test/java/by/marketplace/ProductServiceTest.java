@@ -25,14 +25,14 @@ public class ProductServiceTest {
         Product product = mock(Product.class);
         when(service.saveProduct(product).getName()).thenReturn("Pety");
         Assert.assertEquals("Pety",product.getName());
-//        verify (service.saveProduct(product));
-
+        verify (repository, times(1)) .save(product);
     }
 
     @Test
-    public void testMethodUpdateProduct (){
+    public void testMethodDeleteProduct (){
         Product product = mock(Product.class);
-
+        service.saveProduct(product);
+        doNothing().when(repository).deleteById(isA(Long.class));
+      //  verify(repository,times(1)).deleteById(0L);
     }
-
 }
