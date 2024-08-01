@@ -1,5 +1,5 @@
 package by.marketplace.controller;
-
+import by.marketplace.entity.Basket;
 import by.marketplace.entity.Product;
 import by.marketplace.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -14,28 +14,30 @@ public class ProductController {
     private final ProductService productService;
 
 
-    @PostMapping("/product/save")
+    @PostMapping("/api/product/save")
     public Product createProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
-    @GetMapping("/product")
+    @GetMapping("/api/product")
     public List<Product> getAllProduct() {
         return productService.findAllProducts();
     }
 
-    @DeleteMapping("/product/delete/{id}")
+    @DeleteMapping("/api/product/delete/{id}")
     public void deleteBook(@PathVariable(value = "id") long id) {
         productService.deleteProductById(id);
 
     }
 
-    @PutMapping("/product/edit/{id}")
+    @PutMapping("/api/product/edit/{id}")
     public Product updateBook(@PathVariable(value = "id") long id, @RequestBody Product product) {
-        if (productService.findProductById(id).isPresent()) {
+        if (productService.findProductById(id)!=null) {
             productService.updateProduct(id, product);
             return product;
         }
         return product;
     }
+
+
 }

@@ -5,6 +5,8 @@ import by.marketplace.repository.ProductRepository;
 import by.marketplace.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 
@@ -17,22 +19,21 @@ public class ProductServiceTest {
     public void testN (){
         Product product = mock(Product.class);
         when(product.getName()).thenReturn("Pety");
-        Assert.assertEquals("Pety", product.getName());
+        assertEquals("Pety", product.getName());
 
     }
     @Test
     public void testMethodSaveProduct (){
         Product product = mock(Product.class);
-        when(service.saveProduct(product).getName()).thenReturn("Pety");
-        Assert.assertEquals("Pety",product.getName());
-        verify (repository, times(1)) .save(product);
+        when(repository.save(product)).thenReturn(product);
+       assertEquals(service.saveProduct(product), product);
+//        verify (repository, times(1)) .save(product);
     }
 
     @Test
     public void testMethodDeleteProduct (){
-        Product product = mock(Product.class);
-        service.saveProduct(product);
-        doNothing().when(repository).deleteById(isA(Long.class));
-      //  verify(repository,times(1)).deleteById(0L);
+        doNothing().when(repository).deleteById(any());
+        service.deleteProductById(1L);
+       verify(repository,times(1)).deleteById(1L);
     }
 }

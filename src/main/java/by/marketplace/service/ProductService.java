@@ -16,7 +16,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public Product saveProduct(Product product) {
-        if (productRepository.findById(product.getId()).isPresent()) {
+        if (product.getId()!=null ) {
             System.out.println("You cant save new product, because we have this product in DB");
         }
         productRepository.save(product);
@@ -27,15 +27,15 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> findProductById(Long id) {
+    public Product findProductById(Long id) {
         if (productRepository.findById(id).isPresent()) {
-            return productRepository.findById(id);
+            return productRepository.findById(id).get();
         }
         System.out.println("We dont have Product with this id");
-        return Optional.empty();
+        return productRepository.findById(id).get();
     }
 
-    public void updateProduct(long id, Product product) {
+    public void updateProduct(Long id, Product product) {
 
         Product existingProduct = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
         existingProduct.setName(product.getName());
@@ -51,4 +51,5 @@ public class ProductService {
         }
         System.out.println("We cant delete because we dont have product with this id in DB ");
     }
+
 }
