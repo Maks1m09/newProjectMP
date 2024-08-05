@@ -28,24 +28,14 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", prize=" + prize +
-                ", description='" + description + '\'' +
-                '}';
-    }
 
-//    @ManyToMany
-//    @BatchSize(size = 10)
-//    @JoinTable(
-//            name = "order_product",
-//            joinColumns = @JoinColumn(name = "product_id"),
-//            inverseJoinColumns = @JoinColumn(name = "order_id"))
-//    private List<Order> orders = new ArrayList<>();
-
+    @ManyToMany
+    @BatchSize(size = 10)
+    @JoinTable(
+            name = "order_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders = new ArrayList<>();
 
 
 }

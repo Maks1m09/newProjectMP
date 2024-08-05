@@ -18,7 +18,6 @@ public class BasketController {
     @GetMapping("/basket")
     public String bookInBasket(Model model) {
        List<Product> productList = basket.getProducts();
-
       model.addAttribute("productList ", productList);
        return "basket";
     }

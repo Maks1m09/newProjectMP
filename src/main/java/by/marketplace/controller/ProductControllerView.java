@@ -76,7 +76,6 @@ public class ProductControllerView {
     public String addProductInBasket (@PathVariable(value = "id") Long id, @RequestParam (value = "total" ) Integer total){
         Product product = productService.findProductById(id);
         basket.addProduct(product, total);
-
         return "redirect:/product";
     }
     }

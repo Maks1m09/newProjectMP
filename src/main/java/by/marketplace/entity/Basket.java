@@ -1,19 +1,21 @@
 package by.marketplace.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+@NoArgsConstructor
 @SessionScope
 @Data
 @Component
 public class Basket {
 
 
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products = new LinkedList<>();
 
     public void addProduct(Product product, Integer total) {
         if (product.getQuantity() > 0 && total <= product.getQuantity()) {
@@ -25,4 +27,9 @@ public class Basket {
         }
 
     }
+
+    public void clear (){
+        products.clear();
+    }
 }
+

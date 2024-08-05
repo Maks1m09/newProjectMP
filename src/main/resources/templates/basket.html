@@ -6,7 +6,7 @@
 
     <meta charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>product</title>
+    <title>basket</title>
     <!-- Bootstrap CSS (Cloudflare CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- jQuery (Cloudflare CDN) -->
@@ -28,29 +28,36 @@
             </ul>
 
         </div>
-        <div class="col-md-1 text-end">
-            <button type="button" class="btn btn-outline-primary">Basket</button>
-        </div>
     </nav>
 
 </head>
 <body>
 
 
-
-
-
-
-
 <!--/*@thymesVar id="productList" type="by.marketplace.controller.BasketController"*/-->
 <div th:each="product: ${productList}" class="alert alert-info mt-2 bg-primary">
-
+    <h3 th:text="${product.id}"></h3>
     <h3 th:text="${product.name}"></h3>
     <h3 th:text="${product.quantity}"></h3>
     <h3 th:text="${product.prize}"></h3>
     <h3 th:text="${product.description}"></h3>
-
 </div>
+
+  <!--/*@thymesVar id="order" type="by.marketplace.controller.OrderController"*/-->
+  <form class="row g-3 needs-validation" novalidate th:action="@{/pbasket/oder}"  method="post" th:object="${order}">
+    <div>
+        <div>
+            <label for="order-phone">orderPhone:</label>
+
+          
+            <!--/*@thymesVar id="phone" type="java.lang.String"*/-->
+            <input type="text" th:field="${order.phone}" id="order-phone"/>
+        </div>
+        <div>
+            <button type="submit" class="button">Buy</button>
+        </div>
+    </div>
+  </form>
 
 </body>
 </html>

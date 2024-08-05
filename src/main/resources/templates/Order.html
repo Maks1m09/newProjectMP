@@ -6,8 +6,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>pro
-        duct</title>
+    <title>order</title>
     <!-- Bootstrap CSS (Cloudflare CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"
           integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w=="
@@ -45,45 +44,26 @@
 <body>
 
 
-<!--/*@thymesVar id="products" type="by.marketplace.controller.ProductControllerView"*/-->
-<div th:each="product: ${products}" class="alert alert-info mt-2 bg-primary">
-    <h3 th:text="${product.id}"></h3>
-    <h3 th:text="${product.name}"></h3>
-    <h3 th:text="${product.quantity}"></h3>
-    <h3 th:text="${product.prize}"></h3>
-    <h3 th:text="${product.description}"></h3>
 
+<!--/*@thymesVar id="orders" type="by.marketplace.controller.OrderController"*/-->
+<div th:each="order: ${orders}" class="alert alert-info mt-2 bg-primary">
+    <h3 th:text="${order.orderNumber}"></h3>
+    <h3 th:text="${order.date}"></h3>
+    <h3 th:text="${order.prize}"></h3>
+    <h3 th:text="${order.phone}"></h3>
 
-    <form th:action="'/product/delete/'+${product.id}" method="post">
-        <div>
-            <div>
-                <button type="submit" class="button">Delete</button>
-            </div>
-        </div>
-    </form>
-    <br>
-    <form th:action="'/product/edit/'+${product.id}" method="get">
-        <div>
-            <div>
-                <button type="submit" class="button">Update</button>
-            </div>
-        </div>
-    </form>
+<!--    <form th:action="'/basket/oder'" method="post" >-->
+<!--        <div>-->
+<!--            <div>-->
+<!--                <label for="order-phone">orderPhone:</label>-->
 
-    <br>
-    <form th:action="'/product/addInBasket/'+${product.id}" method="post">
-        <label>
-            <input type="number" name="total" placeholder="Сколько купить">
-        </label>
-        <button class="btn btn-warning" type="submit"> buy</button>
-        <!--        <p th:text="${info}"/>-->
-    </form>
-    <!--/*@thymesVar id="info" type=""*/-->
-
-    <!--    <p th:text="${info}"/>-->
-
-
+<!--                <input type="text" th:field="${order.phone}" id="order-phone"/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <button type="submit" class="button">Buy</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
 </div>
-
 </body>
 </html>
