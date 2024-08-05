@@ -2,15 +2,12 @@ package by.marketplace.controller;
 
 import by.marketplace.entity.Basket;
 import by.marketplace.entity.Order;
-import by.marketplace.entity.Product;
+
 import by.marketplace.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,9 +26,9 @@ public class OrderController {
         return "order";
     }
 
+    @RequestMapping( value = "/basket/oder" , method = { RequestMethod.GET, RequestMethod.POST })
 
-    @PostMapping("/basket/oder")
-    public String createOrder(@RequestParam String phone, Model model) {
+            public String createOrder (@RequestParam (value = "phone") String phone, Model model){
         Order order = new Order();
         order.setPhone(phone);
         order.setProducts(basket.getProducts());

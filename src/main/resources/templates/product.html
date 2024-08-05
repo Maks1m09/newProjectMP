@@ -44,7 +44,6 @@
 </head>
 <body>
 
-
 <!--/*@thymesVar id="products" type="by.marketplace.controller.ProductControllerView"*/-->
 <div th:each="product: ${products}" class="alert alert-info mt-2 bg-primary">
     <h3 th:text="${product.id}"></h3>
@@ -52,7 +51,6 @@
     <h3 th:text="${product.quantity}"></h3>
     <h3 th:text="${product.prize}"></h3>
     <h3 th:text="${product.description}"></h3>
-
 
     <form th:action="'/product/delete/'+${product.id}" method="post">
         <div>
@@ -81,8 +79,6 @@
     <!--/*@thymesVar id="info" type=""*/-->
 
     <!--    <p th:text="${info}"/>-->
-
-
 </div>
 
 </body>

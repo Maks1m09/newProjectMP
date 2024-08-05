@@ -31,7 +31,7 @@ public class ProductControllerView {
     }
 
     @PostMapping("/product/save")
-    public String createProduct(Model model,@ModelAttribute("product") Product product) {
+    public String createProduct(Model model, @ModelAttribute("product") Product product) {
         productService.saveProduct(product);
         model.addAttribute("product",product);
         return "redirect:/product";
