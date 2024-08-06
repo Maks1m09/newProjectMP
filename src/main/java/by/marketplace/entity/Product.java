@@ -9,7 +9,8 @@ import org.hibernate.annotations.BatchSize;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "products")
@@ -31,7 +32,7 @@ public class Product {
     @ManyToMany
     @BatchSize(size = 10)
     @JoinTable(
-            name = "order_product",
+            name = "orders_products",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     private List<Order> orders = new ArrayList<>();

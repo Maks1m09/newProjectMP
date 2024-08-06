@@ -28,7 +28,7 @@ public class OrderController {
 
     @RequestMapping( value = "/basket/oder" , method = { RequestMethod.GET, RequestMethod.POST })
 
-            public String createOrder (@RequestParam (value = "phone") String phone, Model model){
+        public String createOrder (@RequestParam (value = "phone") String phone, Model model){
         Order order = new Order();
         order.setPhone(phone);
         order.setProducts(basket.getProducts());
