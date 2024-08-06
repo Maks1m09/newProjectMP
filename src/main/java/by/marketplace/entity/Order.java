@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor
-@Data
+
 @Entity
 @Table(name = "order")
 public class Order {
@@ -25,11 +24,11 @@ public class Order {
     private Date date = new Date();
 
     @Column(name = "order_prize")
-    private Double prize ;
+    private Double prize;
 
     @Column(name = "order_phone")
-    private String phone ;
-    
+    private String phone;
+
     @ManyToMany
     @BatchSize(size = 10)
     @JoinTable(

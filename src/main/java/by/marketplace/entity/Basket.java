@@ -8,7 +8,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import java.util.LinkedList;
 import java.util.List;
 
-@NoArgsConstructor
+
 @SessionScope
 @Data
 @Component
