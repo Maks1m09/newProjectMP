@@ -31,9 +31,10 @@ public class Order {
 
     @Column(name = "phone")
     private String phone;
-
+//one to many
     @ManyToMany (mappedBy = "orders")
     @BatchSize(size = 10)
     private List<Product> products = new ArrayList<>();
+
 
 }

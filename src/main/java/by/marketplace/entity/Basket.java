@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,12 +15,14 @@ import java.util.List;
 @Component
 public class Basket {
 
+    private HashMap <Product, Integer > products = new HashMap();
 
-    private List<Product> products = new LinkedList<>();
 
     public void addProduct(Product product, Integer total) {
+
+
         if (product.getQuantity() > 0 && total <= product.getQuantity()) {
-            products.add(product);
+            products.put(product, total);
             product.setQuantity(product.getQuantity() - total);
         } else {
             System.out.println("you can't buy that many books because there aren't that many books");

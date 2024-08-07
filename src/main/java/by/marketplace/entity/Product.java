@@ -32,7 +32,7 @@ public class Product {
     @ManyToMany
     @BatchSize(size = 10)
     @JoinTable(
-            name = "orders_products",
+            name = "order_product",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     private List<Order> orders = new ArrayList<>();
