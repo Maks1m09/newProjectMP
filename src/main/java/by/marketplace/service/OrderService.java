@@ -7,7 +7,9 @@ import by.marketplace.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -24,16 +26,24 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Double buyProduct (Basket basket){
+//     for(
+//    Map.Entry<Product, Integer> entry : hashMap.entrySet()) {
+//
+//        Integer key = entry.getKey().getPrize();
+//        Integer value = entry.getValue();
+//        sum+=key*value;
+//    }
 
+    public Double buyProduct (Basket basket){
         double sum = 0;
         if(basket.getProducts().size()>0){
-            List<Product> products = basket.getProducts();
-            for (Product value : products) {
-                sum = (value.getPrize() * value.getQuantity()) + sum;
+            HashMap<Product, Integer> products = basket.getProducts();
+            for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+                Double key = entry.getKey().getPrize();
+                Integer value = entry.getValue();
+                sum+=key*value;
             }
         }
-
         return sum;
     }
 }

@@ -25,13 +25,13 @@ public class ProductController {
     }
 
     @DeleteMapping("/api/product/delete/{id}")
-    public void deleteBook(@PathVariable(value = "id") long id) {
+    public void deleteProduct(@PathVariable(value = "id") long id) {
         productService.deleteProductById(id);
 
     }
 
     @PutMapping("/api/product/edit/{id}")
-    public Product updateBook(@PathVariable(value = "id") long id, @RequestBody Product product) {
+    public Product updateProduct(@PathVariable(value = "id") long id, @RequestBody Product product) {
         if (productService.findProductById(id)!=null) {
             productService.updateProduct(id, product);
             return product;

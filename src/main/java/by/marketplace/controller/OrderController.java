@@ -31,7 +31,7 @@ public class OrderController {
         public String createOrder (@RequestParam (value = "phone") String phone, Model model){
         Order order = new Order();
         order.setPhone(phone);
-        order.setProducts(basket.getProducts());
+       // order.setProducts(basket.getProducts());
         order.setOrderNumber((int) (Math.random() * 100));
         order.setPrize(orderService.buyProduct(basket));
         orderService.saveOrder(order);

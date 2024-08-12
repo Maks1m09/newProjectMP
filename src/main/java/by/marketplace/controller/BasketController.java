@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ public class BasketController {
 
     @GetMapping("/basket")
     public String bookInBasket(Model model) {
-       List<Product> productList = basket.getProducts();
+      HashMap<Product, Integer> productList = basket.getProducts();
       model.addAttribute("productList ", productList);
        return "basket";
     }

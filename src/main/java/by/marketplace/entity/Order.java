@@ -8,6 +8,7 @@ import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @NoArgsConstructor
@@ -32,9 +33,10 @@ public class Order {
     @Column(name = "phone")
     private String phone;
 //one to many
-    @ManyToMany (mappedBy = "orders")
-    @BatchSize(size = 10)
-    private List<Product> products = new ArrayList<>();
+//    @ManyToMany (mappedBy = "orders")
+//    @BatchSize(size = 10)
+//    private HashMap <Product, Integer> products = new HashMap<>();
+//    private List<Product> products = new ArrayList<>();
 
 
 }

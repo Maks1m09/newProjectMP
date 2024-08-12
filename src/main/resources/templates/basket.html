@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml" lang="">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:td="http://www.w3.org/1999/xhtml" lang="">
 <head>
 
     <meta charset="UTF-8">
@@ -41,14 +41,17 @@
 <body>
 
 
+<tbody>
+
 <!--/*@thymesVar id="productList" type="by.marketplace.controller.BasketController"*/-->
-<div th:each="product: ${productList}" class="alert alert-info mt-2 bg-primary">
-    <h3 th:text="${product.id}"></h3>
-    <h3 th:text="${product.name}"></h3>
-    <h3 th:text="${product.quantity}"></h3>
-    <h3 th:text="${product.prize}"></h3>
-    <h3 th:text="${product.description}"></h3>
-</div>
+<tr th:each="product: ${productList}" >
+    <td th:text="${product.key}"></td>
+    <td th:text="${product.value}"></td>
+<!--    <h3 th:text="${product.quantity}"></h3>-->
+<!--    <h3 th:text="${product.prize}"></h3>-->
+<!--    <h3 th:text="${product.description}"></h3>-->
+</tr>
+</tbody>
 
 <form action="/basket/oder" method="post">
     <input type="text" name="phone" placeholder="Enter your phone number" class="form-control"> <br>
