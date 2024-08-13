@@ -18,7 +18,7 @@ public class BasketController {
 
     @GetMapping("/basket")
     public String bookInBasket(Model model) {
-      HashMap<Product, Integer> productList = basket.getProducts();
+      HashMap<Product, Integer> productList =  basket.getProducts();
       model.addAttribute("productList ", productList);
        return "basket";
     }

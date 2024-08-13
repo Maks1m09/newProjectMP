@@ -42,14 +42,10 @@
 
 
 <tbody>
-
-<!--/*@thymesVar id="productList" type="by.marketplace.controller.BasketController"*/-->
 <tr th:each="product: ${productList}" >
     <td th:text="${product.key}"></td>
     <td th:text="${product.value}"></td>
-<!--    <h3 th:text="${product.quantity}"></h3>-->
-<!--    <h3 th:text="${product.prize}"></h3>-->
-<!--    <h3 th:text="${product.description}"></h3>-->
+
 </tr>
 </tbody>
 
