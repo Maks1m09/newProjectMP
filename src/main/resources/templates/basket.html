@@ -30,30 +30,33 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">All products <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/product">All products <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/product/save">Save product<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 
         </div>
     </nav>
-
 </head>
 <body>
 
+<div th:each="product: ${productList}" class="alert alert-info mt-2 bg-primary">
+    <h3 th:text="${product.key.name}"></h3>
+    <h3 th:text="${product.key.description}"></h3>
+    <h3 th:text="${product.value}"></h3>
+</div>
 
-<tbody>
-<tr th:each="product: ${productList}" >
-    <td th:text="${product.key}"></td>
-    <td th:text="${product.value}"></td>
 
-</tr>
-</tbody>
-
+<div>
 <form action="/basket/oder" method="post">
     <input type="text" name="phone" placeholder="Enter your phone number" class="form-control"> <br>
     <button type="submit" class="btn btn-success">create order</button>
 </form>
-
+</div>
 
 </body>
 </html>

@@ -28,6 +28,7 @@ public class Basket {
             System.out.println("you can't buy that many books because there aren't that many books");
         }
     }
+
     public void clear() {
         products.clear();
     }

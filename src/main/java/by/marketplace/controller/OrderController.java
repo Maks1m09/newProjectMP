@@ -3,13 +3,16 @@ package by.marketplace.controller;
 import by.marketplace.entity.Basket;
 import by.marketplace.entity.Order;
 
+import by.marketplace.entity.Product;
 import by.marketplace.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -29,12 +32,7 @@ public class OrderController {
     @RequestMapping( value = "/basket/oder" , method = { RequestMethod.GET, RequestMethod.POST })
 
         public String createOrder (@RequestParam (value = "phone") String phone, Model model){
-        Order order = new Order();
-        order.setPhone(phone);
-       // order.setProducts(basket.getProducts());
-        order.setOrderNumber((int) (Math.random() * 100));
-        order.setPrize(orderService.buyProduct(basket));
-        orderService.saveOrder(order);
+        Order order = orderService.saveOrder(phone);
         basket.clear();
         model.addAttribute("order", order);
         return "redirect:/order";

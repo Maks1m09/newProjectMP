@@ -5,6 +5,7 @@ import by.marketplace.entity.Order;
 import by.marketplace.entity.Product;
 import by.marketplace.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -18,7 +19,21 @@ public class OrderService {
 
   private final   OrderRepository orderRepository;
 
-    public Order saveOrder (Order order) {
+    private final Basket basket;
+
+    public Order saveOrder (String phone) {
+        HashMap<Product, Integer> products = basket.getProducts();
+        Order order = new Order();
+        order.setOrderNumber((int) (Math.random() * 100));
+        order.setPhone(phone);
+//        order.setNameUser("User123");
+        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+            Product product = entry.getKey();
+            Integer quantity = entry.getValue();
+            order.addProduct(product, quantity);
+        }
+        order.setPrize(buyProduct(basket));
+        orderRepository.save(order);
         return order;
     }
 
@@ -26,15 +41,8 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-//     for(
-//    Map.Entry<Product, Integer> entry : hashMap.entrySet()) {
-//
-//        Integer key = entry.getKey().getPrize();
-//        Integer value = entry.getValue();
-//        sum+=key*value;
-//    }
 
-    public Double buyProduct (Basket basket){
+    public Double buyProduct (@NotNull Basket basket){
         double sum = 0;
         if(basket.getProducts().size()>0){
             HashMap<Product, Integer> products = basket.getProducts();
