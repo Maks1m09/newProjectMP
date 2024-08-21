@@ -1,16 +1,16 @@
 package by.marketplace.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @NoArgsConstructor
-//@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -32,13 +32,8 @@ public class Order {
     @Column(name = "phone")
     private String phone;
 
-//    @Column(name = "nameUser")
-//    private String nameUser;
 
-//    public Order() {
-//    }
-
-    public Order(int orderNumber, Date date, Double prize, String phone,  Set<OrderProduct> orderProducts) {
+    public Order(int orderNumber, Date date, Double prize, String phone, Set<OrderProduct> orderProducts) {
         this.orderNumber = orderNumber;
         this.date = date;
         this.prize = prize;
@@ -47,7 +42,7 @@ public class Order {
         this.orderProducts = orderProducts;
     }
 
-    @OneToMany(mappedBy = "order",  orphanRemoval = true)
+    @OneToMany(mappedBy = "order", orphanRemoval = true)
     @ToString.Exclude
     private Set<OrderProduct> orderProducts = new HashSet<>();
 
@@ -61,47 +56,5 @@ public class Order {
         orderProducts.removeIf(orderProduct -> orderProduct.getProduct().equals(product));
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//
-//
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
-//
-//    public Double getPrize() {
-//        return prize;
-//    }
-//
-//    public void setPrize(Double prize) {
-//        this.prize = prize;
-//    }
-//
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
-//
-//
-//    public Set<OrderProduct> getOrderProducts() {
-//        return orderProducts;
-//    }
-//
-//    public void setOrderProducts(Set<OrderProduct> orderProducts) {
-//        this.orderProducts = orderProducts;
-//    }
 
 }

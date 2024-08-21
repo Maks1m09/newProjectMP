@@ -17,16 +17,15 @@ import java.util.Map;
 @Service
 public class OrderService {
 
-  private final   OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     private final Basket basket;
 
-    public Order saveOrder (String phone) {
+    public Order saveOrder(String phone) {
         HashMap<Product, Integer> products = basket.getProducts();
         Order order = new Order();
         order.setOrderNumber((int) (Math.random() * 100));
         order.setPhone(phone);
-//        order.setNameUser("User123");
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
             Product product = entry.getKey();
             Integer quantity = entry.getValue();
@@ -42,14 +41,14 @@ public class OrderService {
     }
 
 
-    public Double buyProduct (@NotNull Basket basket){
+    public Double buyProduct(@NotNull Basket basket) {
         double sum = 0;
-        if(basket.getProducts().size()>0){
+        if (basket.getProducts().size() > 0) {
             HashMap<Product, Integer> products = basket.getProducts();
             for (Map.Entry<Product, Integer> entry : products.entrySet()) {
                 Double key = entry.getKey().getPrize();
                 Integer value = entry.getValue();
-                sum+=key*value;
+                sum += key * value;
             }
         }
         return sum;

@@ -1,13 +1,10 @@
 package by.marketplace.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 
 @SessionScope
@@ -15,11 +12,9 @@ import java.util.List;
 @Component
 public class Basket {
 
-    private HashMap <Product, Integer > products = new HashMap();
-
+    private HashMap<Product, Integer> products = new HashMap();
 
     public void addProduct(Product product, Integer total) {
-
 
         if (product.getQuantity() > 0 && total <= product.getQuantity()) {
             products.put(product, total);

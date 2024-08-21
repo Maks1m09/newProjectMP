@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -16,7 +15,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public Product saveProduct(Product product) {
-        if (product.getId()!=null ) {
+        if (product.getId() != null) {
             System.out.println("You cant save new product, because we have this product in DB");
         }
         productRepository.save(product);

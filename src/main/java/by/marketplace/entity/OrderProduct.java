@@ -1,15 +1,18 @@
 package by.marketplace.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Objects;
 
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Data
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+
 @Entity
 @Table(name = "order_products")
 public class OrderProduct {
@@ -18,55 +21,22 @@ public class OrderProduct {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("orderId")
+    @ToString.Exclude
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("productId")
+    @ToString.Exclude
     private Product product;
-
 
     private int quantity;
 
-    public OrderProduct() {
-    }
 
     public OrderProduct(Order order, Product product, int quantity) {
         this.order = order;
         this.product=product;
         this.quantity=quantity;
         this.id = new OrderProductPK(order.getId(),product.getId());
-    }
-
-    public OrderProductPK getId() {
-        return id;
-    }
-
-    public void setId(OrderProductPK id) {
-        this.id = id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     @Override
