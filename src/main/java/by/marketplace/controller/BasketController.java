@@ -2,10 +2,11 @@ package by.marketplace.controller;
 
 import by.marketplace.entity.Basket;
 import by.marketplace.entity.Product;
+import by.marketplace.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -14,6 +15,8 @@ import java.util.HashMap;
 public class BasketController {
 
     private final Basket basket;
+
+    private final ProductService productService;
 
     @GetMapping("/basket")
     public String bookInBasket(Model model) {
