@@ -1,6 +1,6 @@
 package by.marketplace.controller;
 
-import by.marketplace.entity.Basket;
+
 import by.marketplace.entity.Order;
 import by.marketplace.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,6 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    private final Basket basket;
-
     @GetMapping("/order")
     public String order(Model model) {
         List<Order> orders = orderService.findAllOrder();
@@ -28,10 +26,9 @@ public class OrderController {
         return "order";
     }
 
-    @RequestMapping(value = "/basket/order", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/saveOrder", method = {RequestMethod.GET, RequestMethod.POST})
     public String createOrder(@RequestParam(value = "phone") String phone, Model model) {
         Order order = orderService.saveOrder(phone);
-        basket.clear();
         model.addAttribute("order", order);
         return "redirect:/order";
     }

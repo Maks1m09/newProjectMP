@@ -37,6 +37,8 @@ public class OrderService {
         order.setPrice(buyProduct(basket));
         orderRepository.save(order);
         logger.info("Order saved");
+        basket.clear();
+        logger.info("basket clear");
         return order;
     }
 

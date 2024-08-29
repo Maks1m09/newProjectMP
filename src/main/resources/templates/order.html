@@ -48,7 +48,6 @@
 </head>
 <body>
 
-<!--/*@thymesVar id="orders" type="by.marketplace.controller.OrderController"*/-->
 <div th:each="order: ${orders}" class="alert alert-dark mt-2 bg-light" role="alert">
     <p> id:
     <h3 th:text="${order.id}"></h3>

@@ -45,14 +45,14 @@ public class ProductControllerView {
     }
 
     @GetMapping("/product/edit/{id}")
-    public String productUpdateGet(Model model, @PathVariable(value = "id") Long id) {
+    public String productUpdate(Model model, @PathVariable(value = "id") Long id) {
         Product product = productService.findProductById(id);
         model.addAttribute("product", product);
         return "productUpdate";
     }
 
     @PostMapping("/product/edit/{id}")
-    public String updateProductPut(@PathVariable(value = "id") Long id, @ModelAttribute("product") Product product, Model model) {
+    public String updateProductSend(@PathVariable(value = "id") Long id, @ModelAttribute("product") Product product, Model model) {
         if (productService.findProductById(id) != null) {
             productService.updateProduct(id, product);
             model.addAttribute("product", product);

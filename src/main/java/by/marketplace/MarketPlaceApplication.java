@@ -1,6 +1,5 @@
 package by.marketplace;
 
-import by.marketplace.entity.Product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
