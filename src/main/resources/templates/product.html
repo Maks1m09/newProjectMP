@@ -51,10 +51,14 @@
 
 <!--/*@thymesVar id="products" type="by.marketplace.controller.ProductControllerView"*/-->
 <div th:each="product: ${products}" class="alert alert-dark mt-2 bg-light" role="alert">
-    <p>  name:        <h3 th:text="${product.name}"></h3>
-    <p>  quantity:    <h3 th:text="${product.quantity}"></h3>
-    <p>  prize:       <h3 th:text="${product.prize}"></h3>
-    <p>  description: <h3 th:text="${product.description}"></h3>
+    <p> name:
+    <h3 th:text="${product.name}"></h3>
+    <p> quantity:
+    <h3 th:text="${product.quantity}"></h3>
+    <p> prize:
+    <h3 th:text="${product.price}"></h3>
+    <p> description:
+    <h3 th:text="${product.description}"></h3>
 
     <form th:action="'/product/delete/'+${product.id}" method="post">
         <div>

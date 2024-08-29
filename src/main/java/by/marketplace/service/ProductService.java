@@ -3,6 +3,8 @@ package by.marketplace.service;
 import by.marketplace.entity.Product;
 import by.marketplace.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,14 +13,16 @@ import java.util.List;
 @Service
 public class ProductService {
 
-
     private final ProductRepository productRepository;
+
+    private static final Logger logger = LogManager.getLogger(ProductService.class);
 
     public Product saveProduct(Product product) {
         if (product.getId() != null) {
-            System.out.println("You cant save new product, because we have this product in DB");
+            logger.info("You can't save new product, because we have this product in your DB");
         }
         productRepository.save(product);
+        logger.info("Product saved in DB");
         return product;
     }
 
@@ -30,25 +34,26 @@ public class ProductService {
         if (productRepository.findById(id).isPresent()) {
             return productRepository.findById(id).get();
         }
-        System.out.println("We dont have Product with this id");
+        logger.debug("We don't have Product with this id");
         return productRepository.findById(id).get();
     }
 
     public void updateProduct(Long id, Product product) {
-
         Product existingProduct = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
         existingProduct.setName(product.getName());
         existingProduct.setQuantity(product.getQuantity());
-        existingProduct.setPrize(product.getPrize());
+        existingProduct.setPrice(product.getPrice());
         existingProduct.setDescription(product.getDescription());
         productRepository.save(existingProduct);
+        logger.info("Product updated and saved");
     }
 
     public void deleteProductById(Long id) {
         if (productRepository.findById(id).isPresent()) {
             productRepository.deleteById(id);
+            logger.info("Product with" + " " + id + " deleted");
+            logger.debug("Product with" + " " + id + " deleted");
         }
-        System.out.println("We cant delete because we dont have product with this id in DB ");
+        logger.info("We can't delete because we don't have product with this id in our DB");
     }
-
 }

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,7 +17,6 @@ import java.util.Objects;
 public class OrderProductPK implements Serializable {
     private Long orderId;
     private Long productId;
-
 
     @Override
     public boolean equals(Object o) {

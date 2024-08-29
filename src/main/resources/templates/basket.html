@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml" xmlns:td="http://www.w3.org/1999/xhtml" lang="">
+      xmlns="http://www.w3.org/1999/xhtml" lang="">
 <head>
 
     <meta charset="UTF-8">
@@ -45,17 +45,19 @@
 <body>
 
 <div th:each="product: ${productList}" class="alert alert-dark mt-2 bg-light" role="alert">
-    <p>  name:  <h3 th:text="${product.key.name}"></h3>
-    <p>  description: <h3 th:text="${product.key.description}"></h3>
-    <p>  quantity: <h3 th:text="${product.value}"></h3>
+    <p> name:
+    <h3 th:text="${product.key.name}"></h3>
+    <p> description:
+    <h3 th:text="${product.key.description}"></h3>
+    <p> quantity:
+    <h3 th:text="${product.value}"></h3>
 </div>
 
-
 <div>
-<form action="/basket/oder" method="post">
-    <input type="text" name="phone" placeholder="Enter your phone number" class="form-control"> <br>
-    <button type="submit" class="btn btn-success">create order</button>
-</form>
+    <form action="/basket/order" method="post">
+        <input type="text" name="phone" placeholder="Enter your phone number" class="form-control"> <br>
+        <button type="submit" class="btn btn-success">create order</button>
+    </form>
 </div>
 
 </body>

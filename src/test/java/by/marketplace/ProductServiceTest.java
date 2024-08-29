@@ -32,7 +32,5 @@ public class ProductServiceTest {
     @Test
     public void testMethodUpdateProduct (){
         Product product = mock(Product.class);
-
     }
-
 }

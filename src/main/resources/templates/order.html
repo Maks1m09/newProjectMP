@@ -48,15 +48,18 @@
 </head>
 <body>
 
-
-
 <!--/*@thymesVar id="orders" type="by.marketplace.controller.OrderController"*/-->
 <div th:each="order: ${orders}" class="alert alert-dark mt-2 bg-light" role="alert">
-    <p>  id:    <h3 th:text="${order.id}"></h3>
-    <p>  orderNumber: <h3 th:text="${order.orderNumber}"></h3>
-    <p>  date: <h3 th:text="${order.date}"></h3>
-    <p>  prize: <h3 th:text="${order.prize}"></h3>
-    <p>  phone: <h3 th:text="${order.phone}"></h3>
+    <p> id:
+    <h3 th:text="${order.id}"></h3>
+    <p> orderNumber:
+    <h3 th:text="${order.number}"></h3>
+    <p> date:
+    <h3 th:text="${order.date}"></h3>
+    <p> prize:
+    <h3 th:text="${order.price}"></h3>
+    <p> phone:
+    <h3 th:text="${order.phone}"></h3>
 </div>
 </body>
 </html>

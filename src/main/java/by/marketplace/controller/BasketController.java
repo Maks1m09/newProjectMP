@@ -5,10 +5,9 @@ import by.marketplace.entity.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.HashMap;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -18,9 +17,9 @@ public class BasketController {
 
     @GetMapping("/basket")
     public String bookInBasket(Model model) {
-      HashMap<Product, Integer> productList =  basket.getProducts();
-      model.addAttribute("productList", productList);
-       return "basket";
+        HashMap<Product, Integer> productList = basket.getProducts();
+        model.addAttribute("productList", productList);
+        return "basket";
     }
 }
 

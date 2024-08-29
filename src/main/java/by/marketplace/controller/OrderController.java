@@ -18,8 +18,8 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-    private final Basket basket;
 
+    private final Basket basket;
 
     @GetMapping("/order")
     public String order(Model model) {
@@ -28,14 +28,12 @@ public class OrderController {
         return "order";
     }
 
-    @RequestMapping(value = "/basket/oder", method = {RequestMethod.GET, RequestMethod.POST})
-
+    @RequestMapping(value = "/basket/order", method = {RequestMethod.GET, RequestMethod.POST})
     public String createOrder(@RequestParam(value = "phone") String phone, Model model) {
         Order order = orderService.saveOrder(phone);
         basket.clear();
         model.addAttribute("order", order);
         return "redirect:/order";
     }
-
 }
 
