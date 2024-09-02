@@ -49,7 +49,7 @@
 </head>
 <body>
 
-
+<!--/*@thymesVar id="products" type="by.marketplace.controller.ProductControllerView"*/-->
 <div th:each="product: ${products}" class="alert alert-dark mt-2 bg-light" role="alert">
     <p> name:
     <h3 th:text="${product.name}"></h3>
