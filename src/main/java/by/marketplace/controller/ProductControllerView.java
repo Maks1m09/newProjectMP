@@ -55,8 +55,6 @@ public class ProductControllerView {
     public String updateProductSend(@PathVariable(value = "id") Long id, @ModelAttribute("product") Product product, Model model) {
         if (productService.findProductById(id) != null) {
             productService.updateProduct(id, product);
-            model.addAttribute("product", product);
-            return "redirect:/product";
         }
         model.addAttribute("product", product);
         return "redirect:/product";
