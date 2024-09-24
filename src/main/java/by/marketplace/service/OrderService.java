@@ -3,7 +3,9 @@ package by.marketplace.service;
 import by.marketplace.entity.Basket;
 import by.marketplace.entity.Order;
 import by.marketplace.entity.Product;
+import by.marketplace.entity.Status;
 import by.marketplace.repository.OrderRepository;
+import by.marketplace.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,23 +25,29 @@ public class OrderService {
 
     private final Basket basket;
 
+    private final ProductRepository productRepository;
+
     public Order saveOrder(String phone) {
         HashMap<Product, Integer> products = basket.getProducts();
         Order order = new Order();
-        double sum = 0;
         order.setNumber(UUID.randomUUID().toString().replace("-", ""));
         order.setPhone(phone);
+        double sum = 0;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            Double key = entry.getKey().getPrice();
+            BigDecimal price = entry.getKey().getPrice();
             Integer value = entry.getValue();
             Product product = entry.getKey();
             Integer quantity = entry.getValue();
             order.addProduct(product, quantity);
-            sum += key * value;
+            sum += price.doubleValue() * value;
+            product.setQuantity(product.getQuantity() - value);
+            productRepository.save(product);
         }
         order.setPrice(BigDecimal.valueOf(sum));
+        order.setStatus(Status.getByName("INPROCESSING"));
         orderRepository.save(order);
         log.info("Order saved");
+        log.info("Order  Status: " + order.getStatus());
         basket.clear();
         log.info("basket clear");
         return order;

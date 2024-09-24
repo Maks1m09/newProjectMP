@@ -19,7 +19,6 @@ public class Basket {
         if (product.getQuantity() > 0 && total <= product.getQuantity()) {
             log.info("byy: " + product.getName() + "/ quantity: " + total + " / allQuantity: " + product.getQuantity());
             products.put(product, total);
-            product.setQuantity(product.getQuantity() - total);
         } else {
             log.info("you can't buy " + product.getName() + " that many products " + product.getQuantity()
                     + " because there aren't that many products");

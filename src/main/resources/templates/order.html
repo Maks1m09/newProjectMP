@@ -33,22 +33,15 @@
                     <a class="nav-link" href="/product">All products <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/product/save">Save product<span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
 
         </div>
         <div class="col-md-1 text-end">
             <li><a href="/basket" class="nav-link px-2 link-secondary">Basket</a></li>
-            <!--            <button type="button" class="btn btn-outline-primary">Basket</button>-->
         </div>
     </nav>
 </head>
 <body>
 
-<!--/*@thymesVar id="orders" type="by.marketplace.controller.OrderController"*/-->
 <div th:each="order: ${orders}" class="alert alert-dark mt-2 bg-light" role="alert">
     <p> id:
     <h3 th:text="${order.id}"></h3>
@@ -56,10 +49,12 @@
     <h3 th:text="${order.number}"></h3>
     <p> date:
     <h3 th:text="${order.date}"></h3>
-    <p> prize:
+    <p> price:
     <h3 th:text="${order.price}"></h3>
     <p> phone:
     <h3 th:text="${order.phone}"></h3>
+    <p> status:
+    <h3 th:text="${order.status}"></h3>
 </div>
 </body>
 </html>

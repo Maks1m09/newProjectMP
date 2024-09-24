@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -21,11 +23,11 @@ public class Product {
 
     private Integer quantity;
 
-    private Double price;
+    private BigDecimal price;
 
     private String description;
 
-    public Product(String name, Integer quantity, Double price, String description) {
+    public Product(String name, Integer quantity, BigDecimal price, String description) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
