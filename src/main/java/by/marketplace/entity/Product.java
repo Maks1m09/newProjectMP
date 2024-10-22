@@ -1,24 +1,36 @@
 package by.marketplace.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import java.awt.*;
+import java.math.BigDecimal;
 
-@Data
-
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nameProduct")
+
     private String name;
-    @Column(name = "quantityProduct")
-    private int quantity;
-    @Column(name = "prizeProduct")
-    private int prize;
-    @Column(name = "description")
+
+    private Integer quantity;
+
+    private BigDecimal price;
+
     private String description;
+
+    public Product(String name, Integer quantity, BigDecimal price, String description) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.description = description;
+    }
 }
