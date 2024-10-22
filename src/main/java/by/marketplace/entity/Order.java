@@ -24,19 +24,19 @@ public class Order {
     private LocalDate date = LocalDate.now();
     private BigDecimal price;
     private String phone;
-//    @Enumerated(EnumType.STRING)
-//    private Status status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @OneToMany(mappedBy = "order", orphanRemoval = true)
     @ToString.Exclude
     private Set<OrderProduct> orderProducts = new HashSet<>();
 
-    public Order(String number, LocalDate date, BigDecimal price, String phone, Set<OrderProduct> orderProducts ){// Status status) {
+    public Order(String number, LocalDate date, BigDecimal price, String phone, Set<OrderProduct> orderProducts, Status status) {
         this.number = number;
         this.date = date;
         this.price = price;
         this.phone = phone;
         this.orderProducts = orderProducts;
-      //  this.status = status;
+        this.status = status;
     }
 
     public void addProduct(Product product, int quantity) {
