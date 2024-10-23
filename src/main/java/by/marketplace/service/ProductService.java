@@ -2,50 +2,56 @@ package by.marketplace.service;
 
 import by.marketplace.entity.Product;
 import by.marketplace.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
+@Slf4j
+@RequiredArgsConstructor
 @Service
 public class ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-     public void saveProduct (Product product){
-         if (productRepository.findById(product.getId()).isPresent()){
-             System.out.println("You cant save new product, because we have this product in DB");
-         }
-       productRepository.save(product);
-     }
 
-     public ArrayList <Product> findAllProducts (){
+    public List<Product> findAllProducts() {
         return productRepository.findAll();
-     }
+    }
 
+    public Product findProductById(Long id) {
+        if (productRepository.findById(id).isPresent()) {
+            return productRepository.findById(id).get();
+        }
+        log.debug("We don't have Product with this id " + id);
+        return productRepository.findById(id).get();
+    }
 
-     public void  findProductById (Long id){
-         if (productRepository.findById(id).isPresent()){
-             productRepository.findById(id);
-         }
-         System.out.println("We dont have Product with this id");
-     }
+    public Product saveProduct(Product product) {
+        if (product.getId() != null) {
+            log.info("You can't save new product " + product.getName() + ", because we have this product in your DB");
+        }
+        productRepository.save(product);
+        log.info("Product " + product.getName() + " saved in DB");
+        return product;
+    }
 
-     public void createProduct (String name){
-        Product product = productRepository.findByName (name);
-         if (product!=null){
-             productRepository.createByName(name);
-         }
-         System.out.println("We dont have Product with this name in DB");
-     }
+    public void updateProduct(Long id, Product product) {
+        Product existingProduct = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        existingProduct.setName(product.getName());
+        existingProduct.setQuantity(product.getQuantity());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setDescription(product.getDescription());
+        productRepository.save(existingProduct);
+        log.info("Product " + product.getName() + " updated and saved");
+    }
 
-//     public void deleteProductById (Long id){
-//         Product product = productRepository.findById(id).;
-//         productRepository.deleteById(id);
-//     }
-
-
-
+    public void deleteProductById(Long id) {
+        if (productRepository.findById(id).isPresent()) {
+            productRepository.deleteById(id);
+            log.info("Product with" + " " + id + " deleted");
+        }
+        log.info("We can't delete because we don't have product with this id in our DB");
+    }
 }
