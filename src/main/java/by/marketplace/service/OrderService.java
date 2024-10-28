@@ -3,7 +3,6 @@ package by.marketplace.service;
 import by.marketplace.entity.Basket;
 import by.marketplace.entity.Order;
 import by.marketplace.entity.Product;
-import by.marketplace.entity.Status;
 import by.marketplace.repository.OrderRepository;
 import by.marketplace.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,17 +33,14 @@ public class OrderService {
         order.setPhone(phone);
         double sum = 0;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            BigDecimal price = entry.getKey().getPrice();
-            Integer value = entry.getValue();
             Product product = entry.getKey();
             Integer quantity = entry.getValue();
             order.addProduct(product, quantity);
-            sum += price.doubleValue() * value;
-            product.setQuantity(product.getQuantity() - value);
+            sum +=  product.getPrice().doubleValue()  * quantity;
+            product.setQuantity(product.getQuantity() - quantity);
             productRepository.save(product);
         }
         order.setPrice(BigDecimal.valueOf(sum));
-        order.setStatus(Status.getByName("INPROCESSING"));
         orderRepository.save(order);
         log.info("Order saved");
         log.info("Order  Status: " + order.getStatus());

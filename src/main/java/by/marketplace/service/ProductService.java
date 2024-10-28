@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -21,19 +22,20 @@ public class ProductService {
     }
 
     public Product findProductById(Long id) {
-        if (productRepository.findById(id).isPresent()) {
-            return productRepository.findById(id).get();
-        }
-        log.debug("We don't have Product with this id " + id);
-        return productRepository.findById(id).get();
+        return productRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.debug("Product with id '{}' not found", id);
+                    return new NoSuchElementException("Product not found for id: " + id);
+                });
     }
 
     public Product saveProduct(Product product) {
         if (product.getId() != null) {
-            log.info("You can't save new product " + product.getName() + ", because we have this product in your DB");
+            log.info("Unable to save '{}': product with id '{}' already exists", product.getName(), product.getId());
+            throw new IllegalArgumentException("Product id must be unique");
         }
         productRepository.save(product);
-        log.info("Product " + product.getName() + " saved in DB");
+        log.info("Product '{}' saved", product.getName());
         return product;
     }
 
@@ -48,10 +50,11 @@ public class ProductService {
     }
 
     public void deleteProductById(Long id) {
-        if (productRepository.findById(id).isPresent()) {
+        if (productRepository.existsById(id)) {
             productRepository.deleteById(id);
-            log.info("Product with" + " " + id + " deleted");
+            log.info("Product with id '{}' deleted", id);
+        } else {
+            log.info("Cannot delete because product with id '{}' does not exist", id);
         }
-        log.info("We can't delete because we don't have product with this id in our DB");
     }
 }
