@@ -43,7 +43,6 @@ public class OrderService {
         order.setPrice(BigDecimal.valueOf(sum));
         orderRepository.save(order);
         log.info("Order saved");
-        log.info("Order  Status: " + order.getStatus());
         basket.clear();
         log.info("basket clear");
         return order;
