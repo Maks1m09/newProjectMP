@@ -41,7 +41,6 @@ public class OrderService {
             productRepository.save(product);
         }
         order.setPrice(BigDecimal.valueOf(sum));
-        //   order.setStatus(Status.getByName("INPROCESSING"));
         orderRepository.save(order);
         log.info("Order saved");
         basket.clear();
