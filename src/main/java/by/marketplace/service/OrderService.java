@@ -36,7 +36,7 @@ public class OrderService {
             Product product = entry.getKey();
             Integer quantity = entry.getValue();
             order.addProduct(product, quantity);
-            sum +=  product.getPrice().doubleValue()  * quantity;
+            sum += product.getPrice().doubleValue() * quantity;
             product.setQuantity(product.getQuantity() - quantity);
             productRepository.save(product);
         }
