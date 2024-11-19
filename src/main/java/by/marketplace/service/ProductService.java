@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -21,12 +22,10 @@ public class ProductService {
     }
 
     public Product findProductById(Long id) {
-        if (productRepository.findById(id).isPresent()) {
-            return productRepository.findById(id).get();
-        }
-        log.debug("We don't have Product with this id " + id);
-        return productRepository.findById(id).get();
+        return productRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.debug("Product with id '{}' not found", id);
+                    return new NoSuchElementException("Product not found for id: " + id);
+                });
     }
-
-
 }
