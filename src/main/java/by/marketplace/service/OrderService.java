@@ -34,20 +34,17 @@ public class OrderService {
         order.setPhone(phone);
         double sum = 0;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            BigDecimal price = entry.getKey().getPrice();
-            Integer value = entry.getValue();
             Product product = entry.getKey();
             Integer quantity = entry.getValue();
             order.addProduct(product, quantity);
-            sum += price.doubleValue() * value;
-            product.setQuantity(product.getQuantity() - value);
+            sum += product.getPrice().doubleValue() * quantity;
+            product.setQuantity(product.getQuantity() - quantity);
             productRepository.save(product);
         }
         order.setPrice(BigDecimal.valueOf(sum));
         order.setStatus(Status.getByName("INPROCESSING"));
         orderRepository.save(order);
         log.info("Order saved");
-        log.info("Order  Status: " + order.getStatus());
         basket.clear();
         log.info("basket clear");
         return order;
