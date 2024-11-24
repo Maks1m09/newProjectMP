@@ -1,25 +1,15 @@
 package by.marketplace.entity;
 
 
-import java.util.Locale;
-
 public enum Status {
-    INPROCESSING("INPROCESSING"),
-    COLLECTION("COLLECTION"),
-    INTRANSIT("INTRANSIT"),
-    COMPLETED("COMPLETED");
-
-    private final String displayValue;
+    PEDNING("Pedning"),
+    PAID("Paid"),
+    IN_DELIVERY("In Delivery"),
+    DELIVERED("Delivered"),
+    CANCELLED("Cancelled");
 
     Status(String displayValue) {
-        this.displayValue = displayValue.toUpperCase();
+         displayValue.toUpperCase();
     }
 
-    public String getDisplayValue() {
-        return displayValue;
-    }
-
-    public static Status getByName(String name) {
-        return Status.valueOf(name.toUpperCase(Locale.ROOT));
-    }
 }
