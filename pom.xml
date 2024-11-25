@@ -20,7 +20,6 @@
   </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>
@@ -64,7 +63,6 @@
       <version>3.3.1</version>
     </dependency>
 
-
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -100,13 +98,10 @@
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
         </plugin>
-
-
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
@@ -122,13 +117,11 @@
             </annotationProcessorPaths>
           </configuration>
         </plugin>
-
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration>
             <argLine>-XX:+EnableDynamicAgentLoading</argLine>
           </configuration>
-
           <version>2.22.1</version>
         </plugin>
         <plugin>

@@ -3,6 +3,7 @@ package by.marketplace.service;
 import by.marketplace.entity.Basket;
 import by.marketplace.entity.Order;
 import by.marketplace.entity.Product;
+import by.marketplace.entity.Status;
 import by.marketplace.repository.OrderRepository;
 import by.marketplace.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,7 @@ public class OrderService {
             productRepository.save(product);
         }
         order.setPrice(BigDecimal.valueOf(sum));
+        order.setStatus(Status.PENDING);
         orderRepository.save(order);
         log.info("Order saved");
         basket.clear();

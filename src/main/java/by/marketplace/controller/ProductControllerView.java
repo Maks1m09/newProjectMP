@@ -31,6 +31,5 @@ public class ProductControllerView {
         basket.addProduct(product, total);
         return "redirect:/product";
     }
-
 }
 
