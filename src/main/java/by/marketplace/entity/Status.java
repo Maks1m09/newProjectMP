@@ -2,7 +2,7 @@ package by.marketplace.entity;
 
 
 public enum Status {
-    PEDNING("Pedning"),
+    PENDING("PENDING"),
     PAID("Paid"),
     IN_DELIVERY("In Delivery"),
     DELIVERED("Delivered"),
@@ -11,5 +11,4 @@ public enum Status {
     Status(String displayValue) {
          displayValue.toUpperCase();
     }
-
 }

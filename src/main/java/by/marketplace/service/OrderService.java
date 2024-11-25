@@ -42,7 +42,7 @@ public class OrderService {
             productRepository.save(product);
         }
         order.setPrice(BigDecimal.valueOf(sum));
-        order.setStatus(Status.PEDNING);
+        order.setStatus(Status.PENDING);
         orderRepository.save(order);
         log.info("Order saved");
         basket.clear();
